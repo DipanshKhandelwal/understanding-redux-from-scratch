@@ -24,6 +24,13 @@ function goals (state = [], action) {
     }
 }
 
+function app (state = {}, action) {
+    return {
+        todos: todos(state.todos, action),
+        goals: goals(state.goals, action)
+    }
+}
+
 // library code
 function createStore (reducer) {
 
@@ -52,7 +59,7 @@ function createStore (reducer) {
 }
 
 // use
-const store = createStore(todos)
+const store = createStore(app)
 
 store.subscribe(() => {
     console.log('The new state is: ', store.getState())
